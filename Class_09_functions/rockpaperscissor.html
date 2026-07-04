@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rock-paper-scissor</title>
+</head>
+<body>
+    <h1>rock paper scissor</h1>
+    <button onclick="
+        game(0,'rock');
+    ">rock</button>
+    <button onclick="
+        game(1,'paper');
+    ">paper</button>
+    <button onclick="
+        game(2,'scissor');
+    ">scissor</button>
+
+    <script>
+        function game(youchoiceNumber,youchoiceString){
+            let computerChoice = Math.round(Math.random()*10);
+            computerChoice = computerChoice%3;
+            let computerChoiceString = '';
+            if(computerChoice===0) computerChoiceString = 'rock';
+            if(computerChoice===1) computerChoiceString = 'paper';
+            if(computerChoice===2) computerChoiceString = 'scissor';
+
+            let winner = '';
+
+            if(youchoiceNumber===computerChoice) winner= 'draw';
+            else if((youchoiceNumber===0 && computerChoice===1) || (youchoiceNumber===1 && computerChoice===2) || (youchoiceNumber===2 && computerChoice===0)) winner = 'you lost';
+            else winner = 'you won';
+            alert(`you choose: ${youchoiceString}\ncomputer choose: ${computerChoiceString}\nResult: ${winner}`);
+        }
+    </script>
+</body>
+</html>
