@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockPaperScissor</title>
+</head>
+<body>
+    <h1>Rock Paper Scissor Game</h1>
+    <button onclick="
+        let ran = Math.round(Math.random()*100);
+        ran = ran%3;
+        if(ran===0){
+            alert('you: rock\ncomputer: rock\nresult:draw');
+        }
+        else if(ran===1){
+            alert('you: rock\ncomputer: paper\nresult: you lost');
+        }
+        else if(ran===2){
+            alert('you: rock\ncomputer: scissor\nresult: you won');
+        }
+    ">rock</button>
+    <button onclick="
+        ran = Math.round(Math.random()*100);
+        ran = ran%3;
+        if(ran===0){
+            alert('you: paper\ncomputer: rock\nresult:you won');
+        }
+        else if(ran===1){
+            alert('you: paper\ncomputer: paper\nresult: draw');
+        }
+        else if(ran===2){
+            alert('you: paper\ncomputer: scissor\nresult: you lost');
+        }
+    ">Paper</button>
+    <button onclick="
+        ran = Math.round(Math.random()*100);
+        ran = ran%3;
+        if(ran===0){
+            alert('you: scissor\ncomputer: rock\nresult:you lost');
+        }
+        else if(ran===1){
+            alert('you: scissor\ncomputer: paper\nresult: you won');
+        }
+        else if(ran===2){
+            alert('you: scissor\ncomputer: scissor\nresult: draw');
+        }
+    ">Scissor</button>
+</body>
+</html>
