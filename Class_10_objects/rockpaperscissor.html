@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rock-paper-scissor</title>
+</head>
+<body>
+    <button onclick="game(0,'rock')">rock</button>
+    <button onclick="game(1,'paper')">paper</button>
+    <button onclick="game(2,'scissor')">scissor</button>
+    <button onclick="reset()">reset score</button>
+
+
+    <script>
+        
+        const score = JSON.parse(localStorage.getItem('score')) || {win:0,lose:0,draw:0};
+        
+        function reset(){
+            score.win=0;
+            score.lose=0;
+            score.draw=0;
+            localStorage.setItem('score',JSON.stringify(score));
+            alert('score reseted');
+        }
+
+        function game(yourChoice,yourChoiceString){
+            let computerChoice = Math.round(Math.random()*100);
+            computerChoice = computerChoice%3;
+            let computerChoiceString = '';
+            (computerChoice===0) && (computerChoiceString = 'rock')
+            (computerChoice===1) && (computerChoiceString = 'paper')
+            (computerChoice===2) && (computerChoiceString = 'scissor')
+            
+            let result = '';
+            if(yourChoice===computerChoice) result='draw';
+            else if((yourChoice===0 && computerChoice===1)||(yourChoice===1 && computerChoice===2)||(yourChoice===2 && computerChoice===0)) result='you lost';
+            else result= 'you win';
+
+            if(result==='you win') score.win++;
+            else if(result==='you lost') score.lose++;
+            else score.draw++;
+            localStorage.setItem('score',JSON.stringify(score));
+            alert(`you: ${yourChoiceString}, computer: ${computerChoiceString}, Result: ${result}\nwin: ${score.win},lose: ${score.lose}, draw: ${score.draw}`);
+        }
+    </script>
+</body>
+</html>

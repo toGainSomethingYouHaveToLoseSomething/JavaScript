@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object</title>
+</head>
+<body>
+    
+    <script>
+        const product = {
+            name : 'jersy',
+            type : 'half-sleeve',
+            price : 350,
+            'delivery-time': '1 day',
+
+            fun: function damn(){
+                console.log('function inside object');
+            }
+        };
+
+        console.log(product);
+        console.log(product.name);
+        
+        product.tax = 10;
+        console.log(product.tax);
+        console.log(product);
+
+        delete product.tax;
+
+        console.log(product);
+        console.log(product['delivery-time']);
+        product.fun();
+
+
+        //JSON -> json is string, it stores data
+        //js object -> Json
+        const prodJSON = JSON.stringify(product);
+        console.log(prodJSON);
+
+        // JSON -> js object;
+        const goback = JSON.parse(prodJSON);
+        console.log(goback);
+    </script>
+</body>
+</html>
