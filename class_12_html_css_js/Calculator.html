@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcultor</title>
+    <style>
+        body{
+            background-color: rgb(53, 53, 53);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #title{
+            color: white;
+        }
+        .container{
+            /* margin-left: 500px; */
+            /* background-color: rgb(41, 41, 41) */
+            height: 305px;
+            width: 240px;
+            border: 1px solid rgb(53, 53, 53);;
+            background-color: rgb(40, 39, 39);
+        }
+        .change-Button{
+            background-color: rgb(32, 28, 0);
+        }
+        button{
+            height: 50px;
+            width: 50px;
+            border: 1px solid;
+            margin: 5px;
+            border-radius: 50%;
+            font-size: 30px;
+            background-color: rgb(100, 89, 0);
+        }
+
+        .css-display{
+            margin-top: 5px;
+            height: 50px;
+            width: 227px;
+            border: 1px solid rgb(199, 199, 199);
+            margin-left: 5px;
+        }
+        .css-input{
+            margin-top: 0px;
+            margin-bottom: 2px;
+            padding-top: 3px;
+            padding-bottom: 0px;
+            color: white;
+        }
+        .css-result{
+            margin-top: 3px;
+            margin-bottom: 2px;
+           color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="title">Basic Calculator</h1>
+        <div class="container">
+            <div class="css-display"> <!-- display -->
+                <p class="js-input css-input"></p> <!--input-->
+                <p class="js-result css-result"></p> <!--result-->
+            </div>
+            <div> <!--inputs-->
+                <button onclick="handleClick(event);" class="js-button">7</button><button onclick="handleClick(event);" class="js-button">8</button><button onclick="handleClick(event);" class="js-button">9</button><button onclick="handleClick(event);" class="js-button">/</button><br>
+                <button onclick="handleClick(event);" class="js-button">4</button><button onclick="handleClick(event);" class="js-button">5</button><button onclick="handleClick(event);" class="js-button">6</button><button onclick="handleClick(event);" class="js-button">*</button><br>
+                <button onclick="handleClick(event);" class="js-button">1</button><button onclick="handleClick(event);" class="js-button">2</button><button onclick="handleClick(event);" class="js-button">3</button><button onclick="handleClick(event);" class="js-button">-</button><br>
+                <button onclick="handleClick(event);" class="js-button">C</button><button onclick="handleClick(event);" class="js-button">0</button><button onclick="handleClick(event);" class="js-button">=</button><button onclick="handleClick(event);" class="js-button">+</button><br>
+            </div>
+        </div>
+    </div>
+   
+
+
+    <script>
+        clickedEqual = false;
+        function handleClick(event){
+            event.target.classList.add('change-Button');
+            setTimeout(() => {
+                event.target.classList.remove('change-Button');
+            }, 150);
+            // console.log(event);
+            
+            let x = event.target.innerText;
+            let p1Element = document.querySelector('.js-input');
+            let p2Element = document.querySelector('.js-result');
+            let s = p1Element.innerText;
+            if(x==='C'){
+                p2Element.innerText = '';
+                p1Element.innerText = '';
+                clickedEqual = false;
+            }
+            else if(x==='='){
+                p2Element.innerText = calculate(s);
+                clickedEqual = true;
+            }
+            else{
+                if(clickedEqual===true){
+                    p1Element.innerText=x;
+                    p2Element.innerText='';
+                    s=x;
+                    clickedEqual=false;
+                    // console.log('working');
+                }
+                else{
+                    s= s+x;
+                    p1Element.innerText=s;
+                }
+
+            }
+        }
+
+        function calculate(s){
+            return eval(s);
+        }
+
+    </script>
+</body>
+</html>
