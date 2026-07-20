@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO List</title>
+</head>
+<body>
+    <p>to do list practice 1</p>
+    <div class="js-input">
+        <input type="text" placeholder="to do name">
+        <button onclick="handleAdd();">Add</button>
+    </div>
+
+    <script>
+        let list = [];
+        function handleAdd(){
+            let todoitem = document.querySelector(".js-input").children[0].value;
+            list.push(todoitem);
+            console.log(list);
+            document.querySelector(".js-input").children[0].value="";
+        }
+    </script>
+</body>
+</html>
