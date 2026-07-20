@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoLIst</title>
+    <style>
+        .output{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h3>to-do-list</h3>
+    <div>
+        <input class="js-input" onkeydown="handleKey(event);" type="text" placeholder="add to do">
+        <button onclick="handleClick();">Add</button>
+        <div class="js-output">
+
+        </div>
+        <br>
+        <br>
+        <button onclick="rest();">reset</button>
+    </div>
+
+    <script>
+        let list = JSON.parse(localStorage.getItem('todolist')) || [];
+        printToDo();
+    
+        function addToDo(){
+            let todo = document.querySelector('.js-input');
+            list = JSON.parse(localStorage.getItem('todolist')) || [];
+            list.push(todo.value);
+            todo.value="";
+            printToDo();
+        }
+
+        function delt(index){
+            list = JSON.parse(localStorage.getItem('todolist')) || [];
+            list.splice(index,1);
+            printToDo();
+        }
+
+        function printToDo(){
+            html = "";
+            for(let i=list.length-1; i>=0;i--){
+                html += `<p> ${list[i]} </p> <button onclick="delt(${i});">delete</button><br>`;
+            }
+            document.querySelector('.js-output').innerHTML = html;
+            localStorage.setItem('todolist',JSON.stringify(list));
+        }
+        function handleClick(){
+            addToDo();
+        }
+        function handleKey(event){
+            if(event.key==="Enter") addToDo();
+        }
+        function rest(){
+            list=[];
+            localStorage.setItem('todolist',JSON.stringify(list));
+            printToDo();
+        }  
+    </script>
+</body>
+</html>
