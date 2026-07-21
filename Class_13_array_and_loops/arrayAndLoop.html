@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array And Loop</title>
+</head>
+<body>
+    
+    <script>
+        let array1 = [1,2,4];
+        let array2 = array1; // copy the references , means address
+        let array3 = array1.slice(); // copy elements
+        array3.push(6);
+        console.log(array1);
+        console.log(array3);
+        let array4 = [...array1]; // copy elements
+        array4.push(5);
+        console.log(array1);
+        console.log(array4);
+
+        //destructing
+        let [firstvalue, secondvalue, thirdvalue] = [1,2,3];
+        console.log(firstvalue);
+
+        for(let i=1;i<=10;i++){
+            if(i===4) continue;
+            console.log(i);
+            if(i===8) break;
+        }
+    </script>
+</body>
+</html>
