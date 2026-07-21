@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to_do_list</title>
+    <style>
+        body{
+            font-family:  Arial, Helvetica, sans-serif;
+        }
+        .todo-grid,
+        .todo-input-grid{
+            display: grid;
+            grid-template-columns: 200px 150px 100px;
+            column-gap: 10px;
+            row-gap: 10px;
+            align-items: center;
+        }
+        .todo-input-grid{
+            margin-bottom: 10px;
+            align-items: stretch;
+        }
+        .name-input,
+        .duedate-input{
+            font-size: 15px;
+            padding: 6px;
+        }
+        .add-todo-button{
+            background-color: green;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .delete-todo-button{
+            background-color: red;
+            border: none;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>to-do-list-final-v</h3>
+    <div>
+        <div class="todo-input-grid">
+            <input class="js-input name-input" onkeydown="handleKey(event);" type="text" placeholder="add to do">
+            <input class="js-date duedate-input" type="date">
+            <button class="add-todo-button" onclick="handleClick();">Add</button>
+        </div>
+
+        <div class="js-output todo-grid">
+
+        </div>
+    </div>
+
+    <script>
+        
+        let list = JSON.parse(localStorage.getItem('todoarray')) || [
+            // {
+            //     name : 'make dinner',
+            //     dueDate : '2026-07-21'
+            // },
+            // {
+            //     name : 'wash dishes',
+            //     dueDate : '2026-07-21'
+            // }
+        ];
+
+        renderToDoList();
+
+        function addToDo(){
+            let todo = document.querySelector('.js-input');
+            let duedate = document.querySelector('.js-date');
+
+            const object = {name : todo.value, dueDate: duedate.value};
+            // const name = object.name;
+            // const dueDate = object.dueDate;
+            const {name,dueDate} = object;
+            if(name!="")
+            list.push({name,dueDate}); // name = name: name
+            localStorage.setItem('todoarray',JSON.stringify(list));
+            todo.value="";
+            duedate.value="";
+            renderToDoList();
+        }
+
+        function renderToDoList(){
+            let html = "";
+            for(let i = list.length-1 ; i>=0 ;i--){
+                const object = list[i];
+                const {name, dueDate} = object;
+                html += `
+                    <!--${list[i].name} ${list[i].dueDate} -->
+                    <div>${name}</div>
+                    <div>${dueDate} </div>
+                    <button class="delete-todo-button" onclick="handleDelete(${i})">Delete</button>
+                `;
+            }
+            document.querySelector('.js-output').innerHTML = html;
+        }
+
+        function handleDelete(i){
+            list.splice(i,1);
+            localStorage.setItem('todoarray',JSON.stringify(list));
+            renderToDoList();
+        }
+
+        function handleClick(){
+            addToDo();
+        }
+        function handleKey(event){
+            if(event.key==="Enter") addToDo();
+        }
+    </script>
+</body>
+</html>
