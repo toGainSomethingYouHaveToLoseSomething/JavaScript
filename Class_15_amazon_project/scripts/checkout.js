@@ -7,7 +7,7 @@ let cartSummaryHTML = ''
 cart.forEach((cartItem)=>{
     const productId = cartItem.productId
 
-    let matchingProduct;
+    let matchingProduct
 
     products.forEach((product)=>{
         if(productId===product.id){
@@ -15,6 +15,7 @@ cart.forEach((cartItem)=>{
         }
     })
 
+    console.log(matchingProduct)
 
     cartSummaryHTML+=`
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -108,3 +109,5 @@ document.querySelector('.js-order-summary')
                 container.remove()
             })
         })
+
+console.log('run')
