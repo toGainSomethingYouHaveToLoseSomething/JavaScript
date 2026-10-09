@@ -1,6 +1,7 @@
 import {cart, removeFromCart} from '../data/cart.js'
 import {products} from '../data/products.js'
 import { formatCurrency } from './utils/money.js'
+import {calculateCartQuantity} from './utils/item.js'
 
 let cartSummaryHTML = ''
 
@@ -107,7 +108,13 @@ document.querySelector('.js-order-summary')
 
                 const container = document.querySelector(`.js-cart-item-container-${productId}`)
                 container.remove()
+                updateCartQuantity()
             })
         })
 
-console.log('run')
+function updateCartQuantity(){
+    document.querySelector('.js-checkout-n-items')
+        .textContent = `${calculateCartQuantity()} items`
+}
+
+updateCartQuantity()
