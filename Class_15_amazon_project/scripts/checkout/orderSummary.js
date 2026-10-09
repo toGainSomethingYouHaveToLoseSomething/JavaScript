@@ -4,7 +4,7 @@ import { formatCurrency } from '../utils/money.js'
 import {calculateCartQuantity} from '../utils/item.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
-
+import { renderPaymnetSummary } from './paymentSummary.js'
 
 const today = dayjs()
 const deliveryDate = today.add(7, 'days')
@@ -115,6 +115,7 @@ document.querySelector('.js-order-summary')
                 const container = document.querySelector(`.js-cart-item-container-${productId}`)
                 container.remove()
                 updateCartQuantity()
+                renderPaymnetSummary()
             })
         })
 
@@ -132,6 +133,7 @@ document.querySelectorAll('.js-delivery-option')
             const {productId, deliveryOptionId} = element.dataset
             updateDeliveryOption(productId,deliveryOptionId)
             renderOrderSummary()
+            renderPaymnetSummary()
         })
     })
 
